@@ -75,7 +75,10 @@ abstract class MixinSourceSetConfigImpl implements MixinSourceSetConfig {
         });
 
         // Add our output mappings to the merge task
-        main.getGeneratedMappings().configure(task -> task.map(mappingFile));
+        main.getGeneratedMappings().configure(task -> {
+            task.map(mappingFile); // This **should** set up the task dependency correctly, but gradle is gradle
+            task.dependsOn(compile); // So manually set the dependency
+        });
     }
 
     // region MixinSourceSetConfig properties, manually implemented to prevent capturing sourceSet object by config cache
