@@ -58,7 +58,10 @@ dependencies {
 
 tasks.named('jar', Jar) {
     manifest {
-        attributes('Main-Class': 'net.minecraftforge.renamer.Main')
+        attributes([
+            'Main-Class': 'net.minecraftforge.renamer.Main',
+            'Automatic-Module-Name': 'net.minecraftforge.renamer'
+        ])
         attributes([
             'Specification-Title'   : 'Renamer',
             'Specification-Vendor'  : gradleutils.vendor.get(),
